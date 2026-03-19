@@ -443,14 +443,14 @@ func (this *APINode) setupDB() error {
 	logs.Println("[API_NODE] 执行到这里 1.. ...")
 
 	// 调整预处理语句数量
-	// _ = dbutils.SetGlobalVarMin(db, "max_prepared_stmt_count", 65535)
+	_ = dbutils.SetGlobalVarMin(db, "max_prepared_stmt_count", 65535)
 
 	logs.Println("[API_NODE] 执行到这里 2 .. ...")
 	// 调整binlog过期时间
 	{
 		const binlogExpireDays = 7
 
-		version, err := db.FindCol(0, "SELECT VERSION()")
+		version, err := db.FindCol(0, "SELECT VERSION();")
 		if err == nil {
 			var versionString = types.String(version)
 			if strings.HasPrefix(versionString, "8.") {
