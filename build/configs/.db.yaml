@@ -1,0 +1,37 @@
+default:
+    db: dev
+    prefix: ""
+dbs:
+    dev:
+        driver: mysql
+        dsn: root:auqYjpAXsB5vXosVhd7F@tcp(127.0.0.1:3310)/db_edge?charset=utf8mb4&timeout=30s&multiStatements=true
+        prefix: edge
+        connections:
+            pool: 0
+            max: 0
+            life: ""
+        models:
+            package: internal/db/models
+fields:
+    bool:
+        - uamIsOn
+        - followPort
+        - requestHostExcludingPort
+        - autoRemoteStart
+        - autoInstallNftables
+        - enableIPLists
+        - detectAgents
+        - checkingPorts
+        - enableRecordHealthCheck
+        - offlineIsNotified
+        - http2Enabled
+        - http3Enabled
+        - enableHTTP2
+        - retry50X
+        - retry40X
+        - autoSystemTuning
+        - disableDefaultDB
+        - autoTrimDisks
+        - enableGlobalPages
+        - ignoreLocal
+        - ignoreSearchEngine
