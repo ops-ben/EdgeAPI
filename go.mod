@@ -15,7 +15,7 @@ require (
 	github.com/cespare/xxhash v1.1.0
 	github.com/fsnotify/fsnotify v1.7.0
 	github.com/go-acme/lego/v4 v4.15.0
-	github.com/go-sql-driver/mysql v1.7.0
+	github.com/go-sql-driver/mysql v1.8.1
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible
 	github.com/iwind/TeaGo v0.0.0-20240508072741-7647e70b7070
 	github.com/iwind/gosock v0.0.0-20220505115348-f88412125a62
@@ -35,6 +35,7 @@ require (
 )
 
 require (
+	filippo.io/edwards25519 v1.1.0 // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/internal v1.5.2 // indirect
 	github.com/AzureAD/microsoft-authentication-library-for-go v1.2.2 // indirect
 	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
