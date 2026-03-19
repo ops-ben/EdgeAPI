@@ -6,6 +6,19 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
+	"net"
+	"os"
+	"os/exec"
+	"os/signal"
+	"runtime"
+	"sort"
+	"strconv"
+	"strings"
+	"sync"
+	"syscall"
+	"time"
+
 	"github.com/TeaOSLab/EdgeAPI/internal/configs"
 	teaconst "github.com/TeaOSLab/EdgeAPI/internal/const"
 	"github.com/TeaOSLab/EdgeAPI/internal/db/models"
@@ -29,18 +42,6 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/status"
-	"log"
-	"net"
-	"os"
-	"os/exec"
-	"os/signal"
-	"runtime"
-	"sort"
-	"strconv"
-	"strings"
-	"sync"
-	"syscall"
-	"time"
 
 	// grpc decompression
 	_ "google.golang.org/grpc/encoding/gzip"
@@ -429,6 +430,7 @@ func (this *APINode) setupDB() error {
 
 	// 设置Innodb事务提交模式
 	{
+		logs.Println("[API_NODE]setup database -> innodb_flush_log_at_trx_commit ...")
 		result, err := db.FindOne("SHOW VARIABLES WHERE variable_name='innodb_flush_log_at_trx_commit'")
 		if err == nil && result != nil {
 			var oldValue = result.GetInt("Value")
