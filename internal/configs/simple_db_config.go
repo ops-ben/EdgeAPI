@@ -4,11 +4,12 @@ package configs
 
 import (
 	"fmt"
+	"net/url"
+	"os"
+
 	"github.com/iwind/TeaGo/Tea"
 	"github.com/iwind/TeaGo/dbs"
 	"gopkg.in/yaml.v3"
-	"net/url"
-	"os"
 )
 
 type SimpleDBConfig struct {
@@ -28,7 +29,7 @@ func ParseSimpleDBConfig(data []byte) (*SimpleDBConfig, error) {
 func (this *SimpleDBConfig) GenerateOldConfig() error {
 	var dbConfig = &dbs.DBConfig{
 		Driver: "mysql",
-		Dsn:    url.QueryEscape(this.User) + ":" + url.QueryEscape(this.Password) + "@tcp(" + this.Host + ")/" + url.PathEscape(this.Database) + "?charset=utf8mb4&timeout=30s&multiStatements=true",
+		Dsn:    url.QueryEscape(this.User) + ":" + url.QueryEscape(this.Password) + "@tcp(" + this.Host + ")/" + url.PathEscape(this.Database) + "?charset=utf8mb4&timeout=30s&multiStatements=true&interpolateParams=true",
 		Prefix: "edge",
 	}
 	dbConfig.Models.Package = "internal/db/models"
