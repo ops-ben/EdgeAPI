@@ -440,11 +440,12 @@ func (this *APINode) setupDB() error {
 		}
 	}
 
-	logs.Println("[API_NODE] 执行到这里.. ...")
+	logs.Println("[API_NODE] 执行到这里 1.. ...")
 
 	// 调整预处理语句数量
 	_ = dbutils.SetGlobalVarMin(db, "max_prepared_stmt_count", 65535)
 
+	logs.Println("[API_NODE] 执行到这里 2 .. ...")
 	// 调整binlog过期时间
 	{
 		const binlogExpireDays = 7
@@ -459,6 +460,8 @@ func (this *APINode) setupDB() error {
 			}
 		}
 	}
+
+	logs.Println("[API_NODE] 执行到这里 3 .. ...")
 
 	// 设置binlog_cache_size
 	_ = dbutils.SetGlobalVarMin(db, "binlog_cache_size", 1*1024*1024)
